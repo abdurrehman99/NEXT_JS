@@ -9,6 +9,7 @@ const person = (props) => {
       .then( res=> console.log(res.data))
       .catch( err=> console.log(err));
   }
+
   return (
     <Layout>
       <table className="table table-hover">
@@ -36,19 +37,27 @@ const person = (props) => {
         })}
         </tbody>
         </table>
-y    </Layout>
+    </Layout>
   );
 };
 
-person.getInitialProps = async function() {
-    let res = await axios.get('http://localhost:5000/persons')
-    // const res = await res.json();
-    // data = JSON.stringify(data)
-    // data = JSON.parse(data)
-        return {
-            persons : res.data
-        };
+export async function getServerSideProps() {
+  let res = await axios.get('http://localhost:5000/persons')
+  
+      return {
+          props : { persons : res.data }
+      };
 }
+
+// person.getInitialProps = async function() {
+//     let res = await axios.get('http://localhost:5000/persons')
+//     // const res = await res.json();
+//     // data = JSON.stringify(data)
+//     // data = JSON.parse(data)
+//         return {
+//             persons : res.data
+//         };
+// }
 
 export default person;
 

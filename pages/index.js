@@ -4,6 +4,6 @@ const index = () =>
     (
         <Layout>
             <h2 className='text-center'>Home Page</h2>
-        </Layout>
+        </Layout>    
     )
 export default index;
